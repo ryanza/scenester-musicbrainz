@@ -44,10 +44,12 @@ development:
 musicbrainz_database_development:
   adapter: postgresql
   encoding: unicode
-  database: scenester-musicbrainz_database_development
+  database: musicbrainz
   pool: 5
-  username: <%= `whoami` %>
-  password:
+  username: musicbrainz
+  password: asdasd
+  host: localhost
+  port: 5433
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
