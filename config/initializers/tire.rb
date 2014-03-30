@@ -1,4 +1,4 @@
-TIRE_MODELS = []
+TIRE_MODELS = ['Musicbrainz::Track']
 
 Tire.configure do
   logger STDOUT, :level => :warn  if Rails.env.development?

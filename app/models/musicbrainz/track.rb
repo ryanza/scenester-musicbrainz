@@ -2,8 +2,14 @@ class Musicbrainz::Track < Musicbrainz
   include Tire::Model::Search
   include Tire::Model::Callbacks
   include Indexing::TrackIndex
+  include Concerns::TrackAttributes
 
-  belongs_to :artist_credit, foreign_key: :artist_credit
+  scope :include_associations, -> {includes(:recording, {medium: :release}, {artist_credit_name: {artist: :artist_aliases}})}
+
+  belongs_to :recording, foreign_key: :recording
+
+  # do not need - don't want to leave because ES loads all relationships when indexing
+  #belongs_to :artist_credit, foreign_key: :artist_credit
 
   belongs_to :artist_credit_name, foreign_key: :artist_credit, primary_key: :artist_credit
   has_one :artist, through: :artist_credit_name

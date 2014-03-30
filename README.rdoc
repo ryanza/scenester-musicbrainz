@@ -1,28 +1,26 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the scenester musicbrainz server.
+It has two jobs:
+* 1. Keeping the elastic search sync'd with the musicbrainz database
 
-Things you may want to cover:
+* 2. Providing an API to search the musicbrainz database using elastic search
 
-* Ruby version
+=== Setup:
 
-* System dependencies
+=== Musicbrainz
 
-* Configuration
+The musicbrainz server is hosted remotely so we use an ssh tunnel to access it. Getting the ssh tunnel working is as simple as running the rails server with foreman.
+Use `foreman s` to start the rails server and consequently the tunnel.
 
-* Database creation
+If you want to run the tunnel separately to the server check out the Procfile.
 
-* Database initialization
+==== Setup ES
 
-* How to run the test suite
+First run `rake es:create` to get your ES table thingies mapped correctly.
+Then you can run `rake musicbrainz:sync` to start syncing the elastic search with the Musicbrainz database.
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The musicbrainz:sync rake task keeps track of when it was last run using a file *'config/music_brains_last_synced_with_elastic_search.txt'*.
+It does this to prevent re-indexing tracks that have not changed.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
