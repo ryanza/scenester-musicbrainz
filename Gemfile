@@ -9,6 +9,7 @@ gem 'rails-api'
 gem 'pg'
 gem 'active_model_serializers'
 gem 'foreman'
+gem 'capistrano', '~> 3.1.0'
 
 gem 'tire', github: 'karmi/retire', branch: 'master'
 gem 'tire-contrib', github: 'karmi/tire-contrib', branch: 'master'
