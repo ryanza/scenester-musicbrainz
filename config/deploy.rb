@@ -23,7 +23,7 @@ set :deploy_to, '/var/www/search'
 # set :pty, true
 
 # Default value for :linked_files is []
- set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/database.yml}
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
@@ -33,6 +33,14 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
+
+set :puma_conf, "#{shared_path}/puma.rb"
+set :puma_access_log, "#{shared_path}/log/puma_error.log"
+set :puma_error_log, "#{shared_path}/log/puma_access.log"
+set :puma_threads, [4, 16]
+set :puma_workers, 2
+set :puma_init_active_record, true
+set :puma_preload_app, true
 
 namespace :deploy do
   after :finishing, 'deploy:cleanup'
