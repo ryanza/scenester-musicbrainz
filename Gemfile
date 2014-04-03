@@ -7,11 +7,15 @@ gem 'rails-api'
 
 gem 'puma'
 
-# Use sqlite3 as the database for Active Record
 gem 'pg'
 gem 'active_model_serializers'
 gem 'foreman'
+
+# Deploy
 gem 'capistrano', '~> 3.1.0'
+gem 'capistrano-bundler', '~> 1.1.2'
+gem 'capistrano-rails', '~> 1.1.1'
+gem 'capistrano-rbenv', github: "capistrano/rbenv"
 
 gem 'tire', github: 'karmi/retire', branch: 'master'
 gem 'tire-contrib', github: 'karmi/tire-contrib', branch: 'master'
