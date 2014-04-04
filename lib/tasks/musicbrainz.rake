@@ -16,7 +16,7 @@ namespace :musicbrainz do
     query = query.and('last_updated > ?', last_synced_at) if last_synced_at.present?
 
     count = 0
-    query.find_in_batches(batch_size: 1000) do |tracks|
+    query.find_in_batches(batch_size: SYNC_BATCH_SIZE) do |tracks|
       log("Got a batch of #{tracks.size} tracks. Creating json and updating in elastic search.")
       bulk_update = []
       tracks.each do |track|
