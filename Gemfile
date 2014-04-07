@@ -11,6 +11,8 @@ gem 'pg'
 gem 'active_model_serializers'
 gem 'foreman'
 
+gem 'rabl'
+
 # Deploy
 gem 'capistrano', '~> 3.1.0'
 gem 'capistrano-bundler', '~> 1.1.2'

@@ -23,4 +23,6 @@ Then you can run `rake musicbrainz:sync` to start syncing the elastic search wit
 The musicbrainz:sync rake task keeps track of when it was last run using a file *'config/music_brains_last_synced_with_elastic_search.txt'*.
 It does this to prevent re-indexing tracks that have not changed.
 
+== Usage
 
+/api/v1/search?q=test&page=1&per_page=20
