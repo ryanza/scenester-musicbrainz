@@ -24,8 +24,14 @@ gem 'tire', github: 'karmi/retire', branch: 'master'
 gem 'tire-contrib', github: 'karmi/tire-contrib', branch: 'master'
 gem 'pry'
 
+gem 'uuid'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
+  gem "factory_girl_rails", "~> 4.0"
+  gem 'faker'
+  gem 'database_cleaner'
+  gem 'quiet_assets'
 end
 
 # To use ActiveModel has_secure_password

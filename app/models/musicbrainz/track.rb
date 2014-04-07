@@ -20,7 +20,7 @@ class Musicbrainz::Track < Musicbrainz
   self.table_name = 'track'
   self.inheritance_column = nil
 
-  def self.search(search, page, per_page)
+  def self.api_search(search, page=1, per_page=20)
     Tire.search(index_name, page: page) do
       size per_page
       query{string search}

@@ -17,6 +17,8 @@ namespace :musicbrainz do
 
     count = 0
     query.find_in_batches(batch_size: SYNC_BATCH_SIZE) do |tracks|
+      #For checking memory usage
+      log ObjectSpace.count_objects.to_yaml
       log("Got a batch of #{tracks.size} tracks. Creating json and updating in elastic search.")
       bulk_update = []
       tracks.each do |track|

@@ -26,3 +26,10 @@ It does this to prevent re-indexing tracks that have not changed.
 == Usage
 
 /api/v1/search?q=test&page=1&per_page=20
+
+
+== Testing
+
+`rake db:create RAILS_ENV=musicbrainz_database_test`
+`rake db:schema:load RAILS_ENV=musicbrainz_database_test`
+`rspec`

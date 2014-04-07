@@ -1,5 +1,5 @@
 class Musicbrainz::ArtistCredit < Musicbrainz
-  self.table_name = 'artist'
+  self.table_name = 'artist_credit'
   self.inheritance_column = nil
 
   has_one :track, foreign_key: :artist_credit

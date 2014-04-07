@@ -9,8 +9,12 @@ class Api::V1::MusicbrainzController < ApplicationController
     page = params[:page] || 1
     per_page = params[:per_page] || 20
 
-    @tracks = Musicbrainz::Track.search(search, page, per_page)
+    if search.blank?
+      render :nothing => true, :status => 400
+    else
+      @tracks = Musicbrainz::Track.api_search(search, page, per_page)
 
-    respond_with(@tracks)
+      respond_with(@tracks)
+    end
   end
 end

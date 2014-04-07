@@ -62,6 +62,14 @@ test:
   username: <%= `whoami` %>
   password:
 
+musicbrainz_database_test:
+  adapter: postgresql
+  encoding: unicode
+  database: scenester-musicbrainz_test
+  pool: 5
+  username: <%= `whoami` %>
+  password:
+
 production:
   adapter: postgresql
   encoding: unicode

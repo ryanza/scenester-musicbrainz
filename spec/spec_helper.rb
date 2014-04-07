@@ -25,6 +25,39 @@ RSpec.configure do |config|
   # config.mock_with :flexmock
   # config.mock_with :rr
 
+  config.order = "random"
+  config.include FactoryGirl::Syntax::Methods
+
+  config.before(:suite) do
+    TIRE_MODELS.each do |model|
+      model.constantize.create_elasticsearch_index
+    end
+
+    # sleep 1
+  end
+
+  config.after(:suite) do
+    TIRE_MODELS.each do |model|
+      model.constantize.tire.index.delete
+    end
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+
+    TIRE_MODELS.each do |model|
+      the_model = model.constantize
+      targets = [the_model, *the_model.subclasses]
+      targets.each do |target|
+        target.tire.index.refresh
+        target.search(){size 90000}.each(&:destroy)
+        target.tire.index.refresh
+      end
+    end
+  end
+
+
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
